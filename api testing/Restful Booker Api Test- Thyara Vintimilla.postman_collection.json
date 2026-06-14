@@ -1,0 +1,482 @@
+{
+  "info": {
+    "_postman_id": "1e9d2df1-660a-4026-b084-9e975a389d76",
+    "name": "Restful Booker Api Test- Thyara Vintimilla",
+    "description": "Colección para validar autenticación y CRUD de reservas en Restful Booker.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31110939",
+    "_collection_link": "https://go.postman.co/collection/31110939-1e9d2df1-660a-4026-b084-9e975a389d76?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Obtener token",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code es 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Token generado correctamente\", function () {\r",
+              "    pm.expect(response.token).to.exist;\r",
+              "    pm.expect(response.token).to.not.be.empty;\r",
+              "});\r",
+              "\r",
+              "pm.environment.set(\"token\", response.token);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"password123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Crear Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code es 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Booking ID generado\", function () {\r",
+              "    pm.expect(response.bookingid).to.exist;\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Firstname correcto\", function () {\r",
+              "    pm.expect(response.booking.firstname).to.eql(\"Thyara\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Lastname correcto\", function () {\r",
+              "    pm.expect(response.booking.lastname).to.eql(\"Vintimilla\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Total Price correcto\", function () {\r",
+              "    pm.expect(response.booking.totalprice).to.eql(250);\r",
+              "});\r",
+              "\r",
+              "pm.environment.set(\r",
+              "    \"bookingId\",\r",
+              "    response.bookingid\r",
+              ");"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstname\": \"Thyara\",\r\n  \"lastname\": \"Vintimilla\",\r\n  \"totalprice\": 145,\r\n  \"depositpaid\": true,\r\n  \"bookingdates\": {\r\n    \"checkin\": \"2026-07-01\",\r\n    \"checkout\": \"2026-07-08\"\r\n  },\r\n  \"additionalneeds\": \"Desayuno\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/booking",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "booking"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Consultar Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code es 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Firstname correcto\", function () {\r",
+              "    pm.expect(response.firstname)\r",
+              "        .to.eql(\"Thyara\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Lastname correcto\", function () {\r",
+              "    pm.expect(response.lastname)\r",
+              "        .to.eql(\"Vintimilla\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Booking dates existe\", function () {\r",
+              "    pm.expect(response.bookingdates).to.exist;\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Campo depositpaid existe\", function () {\r",
+              "    pm.expect(response.depositpaid).to.not.be.undefined;\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/booking/{{bookingId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "booking",
+            "{{bookingId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Actualizar Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code es 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Firstname actualizado\", function () {\r",
+              "    pm.expect(response.firstname)\r",
+              "        .to.eql(\"Thyara\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Lastname actualizado\", function () {\r",
+              "    pm.expect(response.lastname)\r",
+              "        .to.eql(\"Vintimilla Actualizacion prueba\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Total Price actualizado\", function () {\r",
+              "    pm.expect(response.totalprice)\r",
+              "        .to.eql(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Deposit Paid actualizado\", function () {\r",
+              "    pm.expect(response.depositpaid)\r",
+              "        .to.eql(false);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Checkin actualizado\", function () {\r",
+              "    pm.expect(response.bookingdates.checkin)\r",
+              "        .to.eql(\"2026-08-01\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Checkout actualizado\", function () {\r",
+              "    pm.expect(response.bookingdates.checkout)\r",
+              "        .to.eql(\"2026-08-16\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Cookie",
+            "value": "token={{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstname\": \"Thyara\",\r\n  \"lastname\": \"Vintimilla Actualizacion prueba\",\r\n  \"totalprice\": 200,\r\n  \"depositpaid\": false,\r\n  \"bookingdates\": {\r\n    \"checkin\": \"2026-08-01\",\r\n    \"checkout\": \"2026-08-16\"\r\n  },\r\n  \"additionalneeds\": \"Cena\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/booking/{{bookingId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "booking",
+            "{{bookingId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Eliminar Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code es 201\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": " token={{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/booking/{{bookingId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "booking",
+            "{{bookingId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Validación de eliminación booking",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/booking/{{bookingId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "booking",
+            "{{bookingId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Crear Booking con campos faltantes",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Respuesta recibida\", function () {\r",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 400, 500]);\r",
+              "});\r",
+              "\r",
+              "console.log(pm.response.text());"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstname\": \"Thyara\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/booking",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "booking"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Actualizar Booking sin Token",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code es 403 Forbidden\", function () {\r",
+              "    pm.response.to.have.status(403);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Respuesta contiene mensaje Forbidden\", function () {\r",
+              "    pm.expect(pm.response.text()).to.include(\"Forbidden\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstname\": \"SinToken\",\r\n  \"lastname\": \"Prueba\",\r\n  \"totalprice\": 20,\r\n  \"depositpaid\": true,\r\n  \"bookingdates\": {\r\n    \"checkin\": \"2026-09-01\",\r\n    \"checkout\": \"2026-09-10\"\r\n  },\r\n  \"additionalneeds\": \"None\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/booking/{{bookingId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "booking",
+            "{{bookingId}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "auth_secret_1e36",
+      "secret": true
+    }
+  ]
+}
