@@ -1,0 +1,29 @@
+{
+  "name": "qakamina",
+  "version": "1.0.0",
+  "description": "Reto de Kamina QA",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test tests/ui",
+    "test:headed": "playwright test tests/ui --headed",
+    "test:chromium": "playwright test tests/ui --project=chromium",
+    "test:firefox": "playwright test tests/ui --project=firefox",
+    "test:webkit": "playwright test tests/ui --project=webkit",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:regression": "playwright test --grep @regression",
+    "test:report": "playwright show-report",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:serve": "allure serve allure-results"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.3",
+    "allure-commandline": "^2.42.1",
+    "allure-playwright": "^3.10.0"
+  }
+}
