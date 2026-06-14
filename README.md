@@ -65,11 +65,11 @@ Generar y visualizar el reporte Allure:
 npm run allure:generate  
 npm run allure:open      
 ```
-# Grupo 4 - Pruebas API
+## Grupo 4 - Pruebas API
 
 Para las pruebas de API se utilizó **Postman** sobre la API pública **Restful Booker**
 
-## Casos cubiertos
+### Casos cubiertos
 
 - API-001: Obtener token de autenticación.
 - API-002: Crear una reserva.
@@ -80,7 +80,7 @@ Para las pruebas de API se utilizó **Postman** sobre la API pública **Restful 
 - API-007: Crear una reserva con campos faltantes (caso negativo).
 - API-008: Actualizar una reserva sin token (caso negativo).
 
-## Validaciones realizadas
+### Validaciones realizadas
 
 - Códigos de respuesta HTTP.
 - Existencia y contenido de campos en el body.
@@ -89,7 +89,7 @@ Para las pruebas de API se utilizó **Postman** sobre la API pública **Restful 
 - Restricciones de autorización.
 - Validación del ciclo completo CRUD.
 
-## Hallazgo relevante
+### Hallazgo relevante
 
 Se identificó que al intentar crear una reserva con campos obligatorios faltantes, la API responde con:
 
@@ -105,7 +105,7 @@ Desde una perspectiva de calidad, sería recomendable responder con:
 
 indicando explícitamente los campos requeridos.
 
-## Ejecución
+### Ejecución
 
 1. Importar la colección:
    - `RestfulBooker.postman_collection.json`
