@@ -67,7 +67,7 @@ npm run allure:open
 ```
 ## Grupo 4 - Pruebas API
 
-Para las pruebas de API se utilizó **Postman** sobre la API pública **Restful Booker**
+Para las pruebas de API se utilizó Postman sobre la API pública Restful Booker
 
 ### Casos cubiertos
 
@@ -113,24 +113,24 @@ indicando explícitamente los campos requeridos.
 2. Importar el environment:
    - `RestfulBooker.postman_environment.json`
 
-3. Seleccionar el environment **Restful Booker Env**.
+3. Seleccionar el environment Restful Booker Env.
 
 4. Ejecutar la colección completa desde Collection Runner.
    
 ## Decisiones Técnicas
 
-- Se utilizó **Playwright con TypeScript** para la automatización UI debido a su estabilidad, soporte moderno y esperas automáticas.
-- Se implementó el patrón **Page Object Model (POM)** para mejorar la mantenibilidad y reutilización del código.
-- Se utilizaron etiquetas **Smoke** y **Regression** para facilitar la ejecución selectiva de pruebas.
-- Se incorporó ejecución **cross-browser** en Chromium, Firefox y WebKit.
-- Se generaron **capturas de pantalla automáticas** como evidencia en puntos clave de los flujos automatizados.
-- Se implementaron reportes mediante **Playwright HTML Report** y **Allure Report**.
-- Para las pruebas API se utilizó **Postman**, aprovechando variables de entorno para encadenar solicitudes y reutilizar datos dinámicos como `token` y `bookingId`.
+- Se utilizó Playwright con TypeScript para la automatización UI debido a su estabilidad, soporte moderno y esperas automáticas.
+- Se implementó el patrón Page Object Model (POM) para mejorar la mantenibilidad y reutilización del código.
+- Se utilizaron etiquetas Smoke y Regression para facilitar la ejecución selectiva de pruebas.
+- Se incorporó ejecución cross-browser en Chromium, Firefox y WebKit.
+- Se generaron capturas de pantalla automáticas como evidencia en puntos clave de los flujos automatizados.
+- Se implementaron reportes mediante Playwright HTML Report y Allure Report.
+- Para las pruebas API se utilizó Postman, aprovechando variables de entorno para encadenar solicitudes y reutilizar datos dinámicos como token y bookingId.
 
 ## Qué Mejoraría con Más Tiempo
 
-- Integrar la ejecución automática de pruebas mediante **GitHub Actions**.
-- Ejecutar la colección de Postman utilizando **Newman** para integrarla en pipelines CI/CD.
+- Integrar la ejecución automática de pruebas mediante GitHub Actions.
+- Ejecutar la colección de Postman utilizando Newman para integrarla en pipelines CI/CD.
 - Centralizar los datos de prueba y configuraciones por ambiente.
 - Ampliar la cobertura de pruebas negativas y escenarios límite.
 - Consolidar reportes de UI y API en una estrategia única de ejecución y monitoreo.
