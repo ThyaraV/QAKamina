@@ -33,6 +33,9 @@ npm run test:headed
 
 ### Estructura del proyecto
 
+- `Casos de prueba y reporte de bugs/`: Esta carpeta contiene los excels de los primeros dos grupos del reto (Grupo 1 y 2)
+- `api testing/`: Esta carpeta contiene el collection y environment de las apis probadas en postman (Grupo 4)
+Y, para el Grupo 3 tenemos: 
 - `pages/`: Contiene los Page Objects para cada página de la aplicación (LoginPage, InventoryPage, CartPage, CheckoutPage).
 - `tests/`: Contiene los archivos de prueba agrupados por feature (login.spec.ts, cart.spec.ts, checkout.spec.ts).
 - `playwright.config.ts`: Configuración del runner.
