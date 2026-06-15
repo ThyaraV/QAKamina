@@ -111,15 +111,15 @@ indicando explícitamente los campos requeridos.
 
 ### Ejecución
 
-1. Importar la colección:
+1. Importar la colección en postman:
    - `RestfulBooker.postman_collection.json`
 
-2. Importar el environment:
+2. Importar el environment en postman:
    - `RestfulBooker.postman_environment.json`
 
-3. Seleccionar el environment Restful Booker Env.
+3. Seleccionar el environment Restful Booker Env para que todo la colección se pueda ejecutar correctamente.
 
-4. Ejecutar la colección completa desde Collection Runner.
+4. Ejecutar la colección completa.
    
 ## Decisiones Técnicas
 
