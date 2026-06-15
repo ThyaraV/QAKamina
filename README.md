@@ -10,10 +10,14 @@ Para la automatización de interfaz se utilizó Playwright con TypeScript, aplic
 
 ### Ejecución
 
-Instalar dependencias:
+Instalar dependencias para que todo funcione correctamente:
 
 ```bash
 npm install
+```
+
+```bash
+npx playwright install
 ```
 
 Ejecutar todos los tests:
